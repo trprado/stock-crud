@@ -32,16 +32,17 @@ A duas formas de se resolver este problema, a primeira seria adicionar cada pedi
 
 Para isto o JSON ficaria da seguinte forma:
 
-```json
-'requests': 
+```
+'requests': {
     'chave_unica_do_pedido': {
         client_key: 'chave_unica_do_cliente'
         products_key: {
           0: 'chave_unica_do_produto'
           ...
         }
-},
-...
+    },
+    ...
+}
 ```
 
 Com isto, fica visvel que é possível criar uma relação entre cliente e produtos em um pedido. Ainda o pedido pode conter vários produtos, para simplificar não adicionei quantidades, mas poderia ser feito na forma de `{key: 'chave_unica_do_produto', amount: número_de_produtos_comprados}` ao invez de apenas uma chave para o produto.
