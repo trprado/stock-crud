@@ -1,0 +1,30 @@
+<h6 class="text-center">Produtos Cadastrados</h6>
+<table class="table table-sm table-hover">
+
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">desrição</th>
+      <th scope="col">Preço</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Remover</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr scope="row" *ngFor="let product of productList" >
+      <td class="align-middle">{{product.name}}</td>
+      <td class="align-middle">{{product.description}}</td>
+      <td class="align-middle">{{product.price}}</td>
+      <td>
+        <a class="btn" (click)="onEdit(product)" >
+          <i class="material-icons md-primary">edit</i>
+        </a>
+      </td>
+      <td>
+        <a class="btn" (click)="onDelete(product.$key)" >
+          <i class="material-icons md-danger">delete_forever</i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

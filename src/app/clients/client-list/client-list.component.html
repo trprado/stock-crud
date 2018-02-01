@@ -1,0 +1,30 @@
+<h6 class="text-center">Clientes Cadastrados</h6>
+<table class="table table-sm table-hover">
+
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th scope="col">Telefone</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Remover</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr scope="row" *ngFor="let client of clientList" >
+      <td class="align-middle">{{client.name}}</td>
+      <td class="align-middle">{{client.email}}</td>
+      <td class="align-middle">{{client.fone}}</td>
+      <td>
+        <a class="btn" (click)="onEdit(client)" >
+          <i class="material-icons md-primary">edit</i>
+        </a>
+      </td>
+      <td>
+        <a class="btn" (click)="onDelete(client.$key)" >
+          <i class="material-icons md-danger">delete_forever</i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

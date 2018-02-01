@@ -1,0 +1,83 @@
+<form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+  
+    <!-- Generated key -->
+    <input 
+      type="hidden"
+      name="$key"
+      #$key="ngModel"
+      [(ngModel)]="productService.selectedProduct.$key" >
+  
+    <div class="form-group">
+      <label for="name">Nome Produto</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              <i class="material-icons">edit</i>
+            </span>
+          </div>
+
+          <input class="form-control"
+            type="text"
+            name="name"
+            #name="ngModel"
+            [(ngModel)]="productService.selectedProduct.name"
+            placeholder="Nome do Produto Completo"
+            required>
+        </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="description">Descrição Produto</label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <i class="material-icons">edit</i>
+          </span>
+        </div>
+
+        <textarea class="form-control"
+          rows="3"
+          name="description"
+          #name="ngModel"
+          [(ngModel)]="productService.selectedProduct.description"
+          placeholder="Descrição do produto"
+          required>
+        </textarea>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="price">Preço</label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            R$
+          </span>
+        </div>
+        
+        <input class="form-control"
+          type="text"
+          name="price"
+          #name="ngModel"
+          [(ngModel)]="productService.selectedProduct.price"
+          placeholder="Ex.: 25,50"
+          pattern="[0-9]+(,[0-9][0-9]+)?"
+          required>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <button class="btn btn-default"
+          type="submit"
+          [disabled]="!productForm.valid" >
+          <i class="material-icons md-primary align-middle">send</i> Enviar
+      </button>
+  
+      <button class="btn btn-default float-right"
+        type="button"
+        (click)="resetForm(productForm)" >
+        <i class="material-icons md-danger align-middle">clear</i> Clear
+      </button>
+    </div>
+  
+  </form>

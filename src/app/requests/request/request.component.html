@@ -1,0 +1,145 @@
+<form #requestForm="ngForm" (ngSubmit)="onSubmit(requestForm)" >
+    <input 
+        type="hidden"
+        name="$key"
+        #$key="ngModel"
+        [(ngModel)]="requestService.selectedRequest.$key" >
+
+
+    <input 
+        type="hidden"
+        name="client_key"
+        #name="ngModel"
+        [(ngModel)]="clientService.selectedClient.$key" >
+
+
+    <div class="form-group">
+        <button class="btn btn-primary"
+            type="button"
+            data-toggle="modal"
+            data-target="#productsModal">
+            <i class="material-icons align-middle">search</i> Buscar Cliente
+        </button>
+    </div>
+
+
+    <h3>Informações do Pedido</h3>
+    <div class="form-group">
+        <label for="client_name">Cliente do Pedido</label>
+        <input class="form-control"
+            type="text"
+            name="client_name"
+            #name="ngModel"
+            [(ngModel)]="clientService.selectedClient.name"
+            disabled
+            requred> 
+    </div>
+
+    <!-- Lista de produtos -->
+<label for="list_products">Produtos do Pedido</label>
+<table class="table table-sm table-hover">
+    <thead class="thead-dark">
+        <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Descrição</th>
+        <th scope="col">Preço</th>
+        <th scope="col">Remover</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr scope="row" *ngFor="let product of requestService.requestProductList" >
+            <td class="align-middle">{{product.name}}</td>
+            <td class="align-middle">{{product.description}}</td>
+            <td class="align-middle">{{product.price}}</td>
+            <td class="align-middle">
+                <a class="btn" (click)="onDeleteProduct(product.$key)">
+                    <i class="material-icons md-danger">delete</i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="form-group">
+    <button class="btn btn-default"
+        type="submit"
+        [disabled]="!requestService.requestProductList.length" >
+        <i class="material-icons md-primary align-middle">send</i> Enviar
+    </button>
+
+    <button class="btn btn-default float-right"
+        type="button"
+        (click)="resetForm(requestForm)" >
+        <i class="material-icons md-danger align-middle">clear</i> Clear
+    </button>
+</div>
+
+</form>
+
+<!-- Lista de produtos disponíveis ao pedido -->
+<div [hidden]="!clientService.selectedClient.name">
+    <h3>Lista de Produtos</h3>
+    <table class="table table-sm table-hover">
+    
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Adicionar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr scope="row" *ngFor="let product of productList" >
+                <td class="align-middle">{{product.name}}</td>
+                <td class="align-middle">{{product.description}}</td>
+                <td class="align-middle">{{product.price}}</td>
+                <td class="align-middle">
+                    <a class="btn" (click)="onAddProduct(product)" >
+                        <i class="material-icons md-primary">add</i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<!-- Modal Select Client -->
+<div class="modal fade" id="productsModal" tabindex="-1" role="dialog" aria-labelledby="productsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="productsModalLabel">Lista de Clientes</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-sm table-hover">
+
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr scope="row" *ngFor="let client of clientList"
+                        (click)="onSelectedClient(client)"
+                        data-dismiss="modal">
+                        <td class="align-middle">{{client.name}}</td>
+                        <td class="align-middle">{{client.email}}</td>
+                        <td class="align-middle">{{client.fone}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

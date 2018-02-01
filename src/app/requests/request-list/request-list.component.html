@@ -1,0 +1,29 @@
+<h6 class="text-center">Pedidos Cadastrados</h6>
+
+<table class="table table-sm table-hover">
+
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Chave Pedido</th>
+      <th scope="col">Cliente</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Remover</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr scope="row" *ngFor="let request of requestList" >
+      <td class="align-middle">{{request.$key}}</td>
+      <td class="align-middle" >{{setClientName(request.client_key)}}</td>
+      <td>
+        <a class="btn" (click)="onEdit(request)" >
+          <i class="material-icons md-primary">edit</i>
+        </a>
+      </td>
+      <td>
+        <a class="btn" (click)="onDelete(request.$key)" >
+          <i class="material-icons md-danger">delete_forever</i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
