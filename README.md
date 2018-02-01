@@ -1,8 +1,7 @@
 # Stock-CRUD
 Exemplo simples de utilização do Angular 5 e Firebase para criar um sistema de controle de estoque.
 
-
-# O Sistema
+## O Sistema
 
 O sistema é uma simples aplicação onde se cadastra o cliente, o produto e os pedidos.
 Para o cliente foi pedido os seguintes campos:
@@ -21,7 +20,7 @@ Para o produto foi pedido os seguintes campos:
 
 Para o pedido é uma junção do ID do cliente com o ID do produto pedido.
 
-# Firebase
+## Firebase
 Para este projeto foi utilizado o Firebase Realtime Database ao ínvez de um banco de dados relacional. No Firebase não existem tabelas, todos os dados são armazenados em JSON e sua sincronização é feita em tempo real.
 
 No firebase não existem chaves ou chavez estrangeiras, o firebase sempre gera uma chave única no formato de string para cada nova entrada. Por padrão o angularfire2 entende que váriaveis iniciadas com `$key` são chaves e quando um novo registro for realizado ele vai gerar automaticamente uma chave única.
@@ -47,7 +46,7 @@ Para isto o JSON ficaria da seguinte forma:
 
 Com isto, fica visvel que é possível criar uma relação entre cliente e produtos em um pedido. Ainda o pedido pode conter vários produtos, para simplificar não adicionei quantidades, mas poderia ser feito na forma de `{key: 'chave_unica_do_produto', amount: número_de_produtos_comprados}` ao invez de apenas uma chave para o produto.
 
-# Requisitos
+## Requisitos
 
 Para rodar este projeto é primeiramente necessário instalar o seguinte:
 - nodejs
